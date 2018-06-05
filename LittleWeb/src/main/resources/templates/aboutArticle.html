@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+
+
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<center>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>帖子名字</th>
+            <th>发布时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="article:${articles}">
+            <td>
+                <p th:text="${article.a_title}"></p>
+            </td>
+            <td>
+                <p th:text="${article.a_date}"></p>
+            </td>
+            <td>
+                <form th:action="@{'/deleteArticle/'+${article.a_id}}">
+                     <button type="submit" class="btn btn-danger btn-xs" >删除</button>
+                </form>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <ul class="pagination" th:each="i : ${#numbers.sequence(1,pageNum)}">
+        <li><a th:href="@{'/aboutArticle/'+${i}}" th:text="${i}"></a>
+    </ul>
+
+</center>
+</body>
+</html>

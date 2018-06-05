@@ -1,2 +1,18 @@
-Git is a version control system.
-Git is free software.
+环境：
+	1)开发技术：spring+springMVC+mybatis
+	2)数据库：mysql<数据库名:hwl002>
+
+功能说明：
+	1)系统功能
+		a.注册功能
+		b.登录功能
+	2)帖子管理功能
+		a.能够发布帖子
+		b.能够删除自己发布的帖子
+	3)评论管理(回帖管理)
+		a.能在帖子下发布自己的留言
+		b.能够删除自己帖子下的留言
+		c.能够回复别人的留言
+
+
+主页：http://localhost:8080/

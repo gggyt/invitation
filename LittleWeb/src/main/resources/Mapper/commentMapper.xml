@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.CommentMapper">
+    <resultMap id="commentMap" type="com.example.demo.Entity.Comment">
+        <id property="c_id" column="c_id" javaType="java.lang.Integer"></id>
+        <id property="p_id" column="p_id" javaType="java.lang.Integer"></id>
+        <result property="c_content" column="c_content" javaType="java.lang.String"></result>
+        <result property="c_date" column="c_date" javaType="java.util.Date"></result>
+        <result property="wa_id" column="wa_id" javaType="java.lang.Integer"></result>
+        <result property="u_name" column="u_name" javaType="java.lang.Integer"></result>
+    </resultMap>
+    <insert id="addComment" parameterType="com.example.demo.Entity.Comment">
+        INSERT INTO comment (c_id, p_id, c_content, c_date, wa_id, u_name) values(#{c_id}, #{p_id}, #{c_content}, #{c_date}, #{wa_id}, #{u_name})
+    </insert>
+    <select id="findCommentById"  parameterType="java.lang.Integer" resultType="com.example.demo.Entity.Comment">
+        select * from comment where wa_id=#{id}
+    </select>
+    <select id="findCommentByPId"  parameterType="java.lang.Integer" resultType="com.example.demo.Entity.Comment">
+        select * from comment where p_id=#{id}
+    </select>
+    <select id="finAllNumByName"  parameterType="java.lang.String" resultType="java.lang.Integer">
+        select COUNT(*) from comment where u_name=#{name}
+    </select>
+
+    <delete id="deleteByWaid" parameterType="java.lang.Integer">
+        delete from comment where wa_id=#{id}
+    </delete>
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from comment where c_id=#{id}
+    </delete>
+    <delete id="deleteByPId" parameterType="java.lang.Integer">
+        delete from comment where p_id=#{id}
+    </delete>
+
+</mapper>

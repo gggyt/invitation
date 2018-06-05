@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.VisitorMapper">
+    <resultMap id="visitorMap" type="com.example.demo.Entity.Visitor">
+        <id property="v_id" column="u_id" javaType="java.lang.Integer"></id>
+        <result property="v_name" column="u_name" javaType="java.lang.String"></result>
+    </resultMap>
+    <select id="findAllNum" resultType="java.lang.Integer">
+        select COUNT(*) from visitor
+    </select>
+    <insert id="insertVisitor" parameterType="com.example.demo.Entity.Visitor">
+        INSERT INTO visitor (v_id, v_name) values(#{v_id}, #{v_name})
+    </insert>
+
+</mapper>

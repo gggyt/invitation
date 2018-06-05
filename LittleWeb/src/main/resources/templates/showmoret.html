@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="/my/show.css">
+    <link rel="stylesheet" type="text/css" href="/my/liuyan.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>首页</title>
+</head>
+<body>
+
+
+<div class="w_bai">
+    <div class="log">
+        <h2 class="text-center" th:text="${article.a_title}"></h2>
+        <h6 class="text-center" th:text="'  '+${article.a_author}+'发布于'+${article.a_date}"></h6>
+        <hr/>
+        <br/>
+        <article class="text-left text_h" th:text="${article.a_content}">
+        </article>
+
+
+        <br/>
+        <br/>
+        <div class="kong"></div>
+
+    </div>
+
+    <hr/>
+    <h3 class="text-left">评论</h3>
+
+    <br/>
+    <br/>
+    <ul id="pn">
+        <li class="list0" th:each="comment:${comments}">
+            <a class="close" th:href="@{'/deleteComment/'+${comment.getFComment().c_id}+'/'+${article.a_id}}" th:if="${flag}">X</a>
+            <div class="head"><img src="/image/main.jpg" alt=""/></div>
+            <div class="content">
+                <p class="text">
+                    <span class="name" th:text="${comment.getFComment().getU_name()}"></span>
+                    <span th:text="${comment.getFComment().getC_content()}"></span>
+                </p>
+                <div class="pic">
+                    <img src="images/img1.jpg" alt=""/>
+                </div>
+                <div class="good">
+                    <span class="date" th:text="${comment.getFComment().getC_date()}"></span>
+                </div>
+
+                <div class="people" total="2980"></div>
+                <div class="comment-list"  th:each="son:${comment.getSComment()}">
+                    <div class="comment" user="self">
+                        <div class="comment-left">
+                            <img src="/image/main.jpg" alt=""/>
+                        </div>
+                        <div class="comment-right">
+                            <div class="comment-text">
+                                <span class="user" th:text="${son.u_name}+': '"></span>
+                                <span th:text="${son.c_content}"></span>
+                            </div>
+                            <div class="comment-date">
+                                <span th:text="${son.c_date}"></span>
+                                <a class="comment-dele" href="javascript:;">回复</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hf">
+                    <form method="post" th:action="@{'/addSonComment/'+${article.a_id}+'/'+${comment.getFComment().getC_id()}}">
+                        <textarea type="text" class="hf-text" autocomplete="off" maxlength="100" name="c_content" id="c_content">
+                        </textarea>
+                        <button type="submit" class="hf-btn">回复</button>
+                    </form>
+                    <span class="hf-nub">0/100</span>
+                </div>
+            </div>
+        </li>
+
+
+    </ul>
+    <script src="/my/liuyan.js"></script>
+
+</div>
+
+
+    <div class="kong"></div>
+
+    <div class="g_xie">
+        <form class="form-horizontal" role="form" th:action="@{'/addComment/'+${article.a_id}}">
+            <div class="col-sm-10">
+                <textarea id="c_content" name="c_content" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="col-sm-2">
+                <input type="submit" class="btn btn-primary f_right" value="提交"> </input>
+            </div>
+
+        </form>
+    </div>
+    <div class="kong"></div>
+</body>
+</html>

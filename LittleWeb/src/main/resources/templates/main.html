@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" type="text/css" href="/my/index.css">
+    <link rel="stylesheet" type="text/css" href="/my/show.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script >
+        $(document).ready(function () {
+            $("li.l").click(function(){
+                $(this).siblings('li.l').removeClass('active');
+                $(this).addClass("active");
+            });
+        });
+    </script>
+    <script>
+        function iframeAutoHeight(){
+            var iframe=document.getElementById("zhong");
+            if(navigator.userAgent.indexOf("MSIE")>0||navigator.userAgent.indexOf("rv:11")>0||navigator.userAgent.indexOf("Firefox")>0){
+                iframe.height=iframe.contentWindow.document.body.scrollHeight;
+            }else{
+                iframe.height=iframe.contentWindow.document.documentElement.scrollHeight;
+            }
+        }
+    </script>
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/main">回帖吧</a>
+        </div>
+
+        <div>
+            <ul class="nav navbar-nav">
+                <li class="l"><a href="/main">首页</a></li>
+            </ul>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+
+            <li><a href="/newUser"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+                    <span th:text="${name}"></span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/loginOut">退出</a></li>
+                    <!--<li><a href="#">退出</a></li>-->
+                </ul>
+            </li>
+
+
+        </ul>
+    </div>
+</nav>
+
+
+<center>
+    <div class="main">
+        <div class="col-md-9">
+            <iframe name="zhong" id="zhong" onload="javascript:iframeAutoHeight();"
+                    width="100%"  scrolling="no" frameborder="0" src="/getPageArticle/0"></iframe>
+        </div>
+
+        <div class="col-md-3" >
+            <div class="wai_img">
+                <div class="main_img">
+                    <img src="/image/main.jpg" class="bai img-circle">
+                </div>
+                <div class="main_button">
+                    <a href="/addTitle" target="zhong"><input type="button" class="btn btn-info" value="添加帖子"></a>
+                </div>
+                <div class="main_info">
+                    已发<a href="/aboutArticle/0" target="zhong"><strong th:text="${sumArticle}"></strong></a>
+                    &nbsp;&nbsp;|&nbsp;&nbsp;
+                    留言<strong th:text="${sumComment}"></strong>
+                </div>
+                <div class="num">
+                    <p>访客人数</p><p class="num_p" th:text="${sum}"></p>
+                </div>
+            </div>
+            <br/>
+
+        </div>
+    </div>
+
+</body>
+</html>

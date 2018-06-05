@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="/my/show.css">
+    <link rel="stylesheet" type="text/css" href="/my/message.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>首页</title>
+</head>
+<body>
+
+
+<div class="w_bai">
+    <div class="log">
+        <h2 class="text-center" th:text="${article.a_title}"></h2>
+        <h6 class="text-center" th:text="'  '+${article.a_author}+'发布于'+${article.a_date}"></h6>
+        <hr/>
+        <br/>
+        <article class="text-left text_h" th:text="${article.a_content}">
+        </article>
+
+
+        <br/>
+        <br/>
+        <div class="kong"></div>
+
+    </div>
+
+    <hr/>
+    <h3 class="text-left">评论</h3>
+
+    <div class="bai" th:each="comment:${comments}">
+        <div class="message ">
+            <div class="wai_pic" >
+                <table>
+                    <tr >
+                        <th class="pic" style="height: 60px;">
+                            <img src="/image/main.jpg" class="img-circle bai">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="height: 40px;">
+                            <p th:text="${comment.getU_name()}"></p>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+            <div class="message_main">
+                <p th:text="${comment.c_content}"></p>
+                <p class="youxia">回复</p>
+            </div>
+        </div>
+        <div class="xia">
+            <div class="wai_pic" >
+                <table>
+                    <tr >
+                        <th class="pic" style="height: 60px;">
+                            <img src="/image/main.jpg" class="img-circle bai">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="height: 40px;">
+                            <p>&nbsp;&nbsp;xggg</p>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+            <div class="message_main">
+                西瓜好丑啊
+                <p class="youxia">回复</p>
+            </div>
+        </div>
+
+        <div class="kong"></div>
+    </div>
+
+
+    <div class="kong"></div>
+
+    <div class="g_xie">
+        <form class="form-horizontal" role="form" th:action="@{'/addComment/'+${article.a_id}}">
+            <div class="col-sm-10">
+                <textarea id="c_content" name="c_content" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="col-sm-2">
+                <input type="submit" class="btn btn-primary f_right" value="提交"> </input>
+            </div>
+
+        </form>
+    </div>
+    <div class="kong"></div>
+</div>
+</body>
+</html>

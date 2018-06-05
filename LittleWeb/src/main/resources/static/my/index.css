@@ -1,0 +1,47 @@
+
+.g_xie{
+    //height:800px;
+    width:100%;
+    //background-color: #cccccc;
+}
+.bai{
+	width: 100%;
+}
+.allbai{
+	width: 100%;
+	height: 100%;
+}
+.wai_img{
+	width: 100%;
+	height: 350px;
+	 border:1px solid #FFDEAD;
+	 background:#fafcfd
+}
+.main_img{
+	width: 100px;
+	height: 100px;
+	margin-top: 50px;
+}
+.main_button{
+	width: 100px;
+	margin-top: 20px;
+}
+.main_info{
+	width: 100%;
+	margin-top: 30px;
+
+}
+.num{
+	width: 100%;
+	margin-top: 20px;
+}
+.num_p{
+	font-size: 22px;
+
+}
+.f_left{
+	float:left;
+}
+.f_right{
+	float:right;
+}

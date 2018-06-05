@@ -1,0 +1,66 @@
+<!DOCTYPE >
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/my/login.css">
+    <title>Welcome</title>
+    <script type="text/javascript">
+        var xmlHttp;
+        function checkIt(){
+            //获取文本框的值
+            var account=document.getElementById("u_name").value;
+            //先创建XMLHttpRequest对象
+            if (window.XMLHttpRequest) {
+                xmlHttp = new XMLHttpRequest();
+            } else {// code for IE6, IE5
+                xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            //服务器地址和数据
+            var url="/check?account=account="+account;
+            //规定请求的类型、URL 以及是否异步处理请求。
+            xmlHttp.open("GET",url,true);
+            //将请求发送到服务器
+            xmlHttp.send();
+            //回调函数
+            xmlHttp.onreadystatechange=function(){
+                if (xmlHttp.readyState==4 && xmlHttp.status==200){
+                    //给div设置内容
+                    document.getElementById("errorAccount").innerHTML = xmlHttp.responseText;
+                }
+            }
+        }
+        function checkText(form) {
+            if (form.u_name.value==null||form.u_name.value=='') {
+                alert("请输入用户名");
+                return false;
+            }
+            if (form.u_passwd.value==null||form.u_passwd.value=='') {
+                alert("请输入密码");
+                return false;
+            }
+            if (form.u_passwdd.value!=form.u_passwd.value) {
+                alert("两次密码不同，请重新输入");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <div class="container">
+        <h1>注册</h1>
+        <form action="/addUser" method="post">
+            <center>
+                <input type="text" placeholder="用户名" name="u_name" id="u_name" onblur="checkIt()"/>
+                <div id="errorAccount" class="tixing"></div>
+                <input type="password" placeholder="用户密码" name="u_passwd" id="u_passwd"/>
+                <input type="password" placeholder="确认密码" name="u_passwdd" id="u_passwdd"/>
+                <input type="submit" value="注册" onclick="return checkText(this.form)"/>
+            </center>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

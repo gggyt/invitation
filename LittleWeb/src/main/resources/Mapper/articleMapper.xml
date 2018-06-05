@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ArticleMapper">
+    <resultMap id="articleMap" type="com.example.demo.Entity.Article">
+        <id property="a_id" column="a_id" javaType="java.lang.Integer"></id>
+        <result property="a_title" column="a_title" javaType="java.lang.String"></result>
+        <result property="a_author" column="a_author" javaType="java.lang.String"></result>
+        <result property="a_content" column="a_content" javaType="java.lang.String"></result>
+        <result property="a_date" column="a_date" javaType="java.util.Date"></result>
+    </resultMap>
+
+    <resultMap id="article" type="com.example.demo.Entity.Article">
+        <id property="a_id" column="a_id" javaType="java.lang.Integer"></id>
+        <result property="a_title" column="a_title" javaType="java.lang.String"></result>
+        <result property="a_author" column="a_author" javaType="java.lang.String"></result>
+        <result property="a_content" column="a_content" javaType="java.lang.String"></result>
+        <result property="a_date" column="a_date" javaType="java.util.Date"></result>
+        <collection  property="comments" ofType="com.example.demo.Entity.Comment">
+            <id property="c_id" column="c_id" javaType="java.lang.Integer"></id>
+            <result property="p_id" column="p_id" javaType="java.lang.Integer"></result>
+            <result property="c_content" column="c_content" javaType="java.lang.String"></result>
+            <result property="c_date" column="c_date" javaType="java.util.Date"></result>
+            <result property="u_name" column="u_name" javaType="java.lang.String"></result>
+            <result property="wa_id" column="wa_id" javaType="java.lang.Integer"></result>
+        </collection >
+    </resultMap>
+
+    <insert id="addArticle" parameterType="com.example.demo.Entity.Article">
+        INSERT INTO article (a_id, a_title, a_author, a_content, a_date ) values(#{a_id}, #{a_title}, #{a_author}, #{a_content}, #{a_date})
+    </insert>
+    <select id="findAll" parameterType="com.example.demo.Entity.Article" resultType="com.example.demo.Entity.Article">
+        SELECT * from article order by a_id DESC
+    </select>
+    <select id="findById" parameterType="com.example.demo.Entity.Article" resultType="com.example.demo.Entity.Article">
+        SELECT * from article where a_id=#{id}
+    </select>
+    <select id="findAllArticleCommentById" parameterType="java.lang.Integer"  resultMap="article">
+      select a.* ,c.* from article a ,comment c where c.wa_id=a.a_id and c.wa_id=#{id}
+    </select>
+    <select id="getAllArticleNum"  parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(*) from article where a_author=#{name}
+    </select>
+    <select id="findByBeginAndNum"  parameterType="java.lang.Integer" resultType="com.example.demo.Entity.Article">
+        select * from article order by a_id desc LIMIT #{begin}, #{num}
+    </select>
+    <select id="getAllNum" resultType="java.lang.Integer">
+        select count(*) from article
+    </select>
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from article where a_id=#{id}
+    </delete>
+    <select id="findByBeginAndNumAndAuthor"  resultType="com.example.demo.Entity.Article">
+        select * from article  where a_author=#{name} order by a_id desc LIMIT #{begin}, #{num}
+    </select>
+</mapper>
