@@ -15,7 +15,15 @@ public class Article {
     private String a_content;
     private Date a_date;
     private List<Comment> comments;
+    private List<Category> categories;
 
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
 
     public List<Comment> getComments() {
         return comments;
@@ -63,5 +71,18 @@ public class Article {
 
     public void setA_author(String a_author) {
         this.a_author = a_author;
+    }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "a_id=" + a_id +
+                ", a_title='" + a_title + '\'' +
+                ", a_author='" + a_author + '\'' +
+                ", a_content='" + a_content + '\'' +
+                ", a_date=" + a_date +
+                ", comments=" + comments +
+                ", categories=" + categories +
+                '}';
     }
 }

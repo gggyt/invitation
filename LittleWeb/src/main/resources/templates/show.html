@@ -22,7 +22,8 @@
     <div class="log" th:each="article:${articles}">
         <br/>
         <a th:href="@{'/showArticle/'+${article.a_id}}"> <h2 class="text-left th2" th:text="${#strings.abbreviate(article.a_title,10)}"></h2></a>
-        <h6 class="text-left th6" th:text="'  '+${article.a_author}+'发布于'+${article.a_date}"></h6>
+        <h6 class="text-left th6" th:text="'  '+${article.a_author}+'发布于'+
+        ${#dates.format(article.a_date,'yyyy-MM-dd HH:mm:ss')}"></h6>
         <br/>
         <article class="text-left tarticle" th:text="'    '+${#strings.abbreviate(article.a_content, 50)}">
         </article>

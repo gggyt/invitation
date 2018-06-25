@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/hou_first.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/jquery-1.8.3.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        
+        function addCategory(form) {
+            if (form.ca_name.value==""||form.ca_name.value==null) {
+                alert("请输入分类名");
+                return false;
+            }
+            if (form.ca_name.value.length>10) {
+                alert("长度过长");
+                return false;
+            }
+            return true;
+        }
+        
+        function delete1() {
+            var r=confirm("确认删除？")
+            //console.log(r);
+            // return true;
+            if (r==false) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+
+</head>
+<body>
+<br/>
+<center>
+    <div class="main">
+        <div class="col-md-3">
+            <p>分类管理</p>
+            <form method="post" action="/addCategory" target="zhong">
+                <input type="text" class="form-control" id="ca_name" name="ca_name" placeholder="请输入分类">
+                <br/>
+                <button type="submit" class="btn btn-info" onclick="return addCategory(this.form)">添加分类</button>
+            </form>
+        </div>
+        <div class="col-md-9">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th width="60%">分类</th>
+                    <th width="40%">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="category: ${categories}">
+                    <form target="zhong" th:action="@{'/deleteOneCategory/'+${category.ca_name}}">
+                        <td th:text="${category.ca_name}"></td>
+                        <td>
+                            <button type="submit" class="btn btn-danger btn-xs" onclick="return delete1()" th:if="${category.ca_name}!='未分类'">删除</button>
+
+                        </td>
+                    </form>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+</center>
+</body>
+</html>

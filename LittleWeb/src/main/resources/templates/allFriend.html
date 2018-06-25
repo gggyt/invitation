@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/my/liuyan.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/my/show.css">
+    <title>demo</title>
+    <script>
+        function addFunction() {
+            alert("好友请求以发送");
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+<ul id="pn" th:each="friendOrNot:${friendOrNotList}">
+    <li class="list0" >
+        <div class="head"><img src="/image/main.jpg" alt=""/></div>
+        <div class="content">
+            <p class="text"><span class="name">&nbsp;&nbsp;&nbsp;</span>
+                <span class="name" th:text="${friendOrNot.FriendName}"></span> </p>
+            <form th:action="@{'/addFriendWithMe/'+${friendOrNot.FriendName}}" target="zhong" method="post">
+                <button type="submit" class="btn btn-info f_right btn-xs" th:if="${friendOrNot.getFriendOrNot()}=='0'" onclick="return addFunction()">添加好友</button>
+            </form>
+            <p class="f_right" th:if="${friendOrNot.getFriendOrNot()}=='1'">已添加好友</p>
+            <p class="f_right" th:if="${friendOrNot.getFriendOrNot()}=='2'">等待对方同意</p>
+            <br/><br/>
+            <form th:action="@{'/toBeSomebodyFan/'+${friendOrNot.FriendName}}" target="zhong" method="post">
+               <button type="submit" class="btn btn-info btn-xs f_right" th:if="${friendOrNot.getFansOrNot()}=='0'">关注他</button>
+            </form>
+            <form th:action="@{'/cancelToBeSomebodyFan/'+${friendOrNot.FriendName}}" target="zhong" method="post">
+                 <button type="submit" class="btn btn-danger btn-xs f_right" th:if="${friendOrNot.getFansOrNot()}=='1'">取消关注</button>
+            </form>
+        </div>
+
+    </li>
+</ul>
+<center>
+<ul class="pagination" th:each="i : ${#numbers.sequence(1,pageNum)}">
+    <li><a th:href="@{'/allFriend/'+${i}}" th:text="${i}"></a>
+</ul>
+</center>
+
+<script src="/my/liuyan.js"></script>
+
+</body>
+</html> 

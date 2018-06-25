@@ -1,0 +1,8 @@
+.my_main{
+	width:1000px;
+	background-color: #fff;
+    position: absolute;
+	left:50%;
+	top:50%;
+	transform: translate(-40%, -50%);
+}

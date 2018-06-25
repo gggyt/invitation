@@ -41,24 +41,42 @@
         <div>
             <ul class="nav navbar-nav">
                 <li class="l"><a href="/main">首页</a></li>
+                <li class="l"><a href="/allFriend/1" target="zhong">好友</a></li>
             </ul>
         </div>
-        <ul class="nav navbar-nav navbar-right">
 
-            <li><a href="/newUser"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+        <div>
+            <form class="navbar-form navbar-left" role="search" target="zhong" action="/findArticleByUsernameOrDateOrTitle" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search" id="s" name="s">
+                </div>
+                <input type="submit" class="btn btn-default" value="搜索">
 
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
-                    <span th:text="${name}"></span> <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="/loginOut">退出</a></li>
-                    <!--<li><a href="#">退出</a></li>-->
-                </ul>
-            </li>
+            </form>
 
+        </div>
+        <div>
+            <ul class="nav navbar-nav navbar-right">
 
-        </ul>
+                <li><a href="/newUser"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+                        <span th:text="${name}"></span> <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/personMain">个人中心</a></li>
+                        <li><a href="/loginOut">退出</a></li>
+
+                        <!--<li><a href="#">退出</a></li>-->
+                    </ul>
+                </li>
+            </ul>
+
+            <strong class="navbar-text navbar-right" th:text="${sum}"></strong>
+            <p class="navbar-text navbar-right">访客人数</p>
+
+        </div>
     </div>
 </nav>
 
@@ -84,11 +102,21 @@
                     留言<strong th:text="${sumComment}"></strong>
                 </div>
                 <div class="num">
-                    <p>访客人数</p><p class="num_p" th:text="${sum}"></p>
+                    <p>粉丝人数</p>
+                    <a href="/getAllMyFans" target="zhong"><p class="num_p" th:text="${fansNum}"></p></a>
                 </div>
             </div>
             <br/>
+            <h3>分类</h3>
+            <div class="bai">
+                <div class="bgc-yellow" th:each="category:${categorys}">
+                    <a th:href="@{'/getTheArticleOfCategory/'+${category.ca_name}+'/0'}" target="zhong">
+                    <span th:text="'    '+${category.ca_name}+'  '"></span>
+                    </a>
+                </div>
 
+
+            </div>
         </div>
     </div>
 

@@ -21,6 +21,7 @@
     <div class="log">
         <h2 class="text-center" th:text="${article.a_title}"></h2>
         <h6 class="text-center" th:text="'  '+${article.a_author}+'发布于'+${article.a_date}"></h6>
+        <h6 class="text-center" th:text="'分类：'+${categoriesS}"></h6>
         <hr/>
         <br/>
         <article class="text-left text_h" th:text="${article.a_content}">
@@ -54,7 +55,7 @@
                     <span class="date" th:text="${comment.getFComment().getC_date()}"></span>
                 </div>
 
-                <div class="people" total="2980"></div>
+                <br/><br/>
                 <div class="comment-list"  th:each="son:${comment.getSComment()}">
                     <div class="comment" user="self">
                         <div class="comment-left">
@@ -90,19 +91,19 @@
 </div>
 
 
-    <div class="kong"></div>
+<div class="kong"></div>
 
-    <div class="g_xie">
-        <form class="form-horizontal" role="form" th:action="@{'/addComment/'+${article.a_id}}">
-            <div class="col-sm-10">
-                <textarea id="c_content" name="c_content" class="form-control" rows="3"></textarea>
-            </div>
-            <div class="col-sm-2">
-                <input type="submit" class="btn btn-primary f_right" value="提交"> </input>
-            </div>
+<div class="g_xie">
+    <form class="form-horizontal" role="form" th:action="@{'/addComment/'+${article.a_id}}">
+        <div class="col-sm-10">
+            <textarea id="c_content" name="c_content" class="form-control" rows="3"></textarea>
+        </div>
+        <div class="col-sm-2">
+            <input type="submit" class="btn btn-primary f_right" value="提交"> </input>
+        </div>
 
-        </form>
-    </div>
-    <div class="kong"></div>
+    </form>
+</div>
+<div class="kong"></div>
 </body>
 </html>

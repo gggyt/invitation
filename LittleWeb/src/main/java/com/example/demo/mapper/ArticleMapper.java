@@ -19,4 +19,16 @@ public interface ArticleMapper {
     int getAllNum();
     void deleteById(int id);
     List<Article> findByBeginAndNumAndAuthor(@Param("name")String name,@Param("begin")int begin, @Param("num")int num);
+    List<Article> findArticleByUsernameOrDateOrTitle(@Param("s") String s);
+
+    int getArticleNumberByUsernameOrDateOrTitle(@Param("s") String s);
+
+    List<Article> findSearchArticleByBeginAndNum(@Param("s") String s, @Param("begin") int begin,  @Param("num") int num );
+    int maxArticleNumber();
+
+    Article findArticleAndCategory(@Param("id") int id);
+
+    List<Article> findTheArticleOfOneCategory(@Param("ca_name") String ca_name);
+
+    List<Article> findTheArticleOfCategoryLimitByBeginAndNum(@Param("ca_name") String ca_name, @Param("begin") int beigin, @Param("num") int num);
 }

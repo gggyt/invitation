@@ -45,3 +45,14 @@
 .f_right{
 	float:right;
 }
+.bgc-yellow{
+	float: left;
+	font-size: 14px;
+	background-color: #FFDEAD;
+	margin-left: 13px;
+	margin-top: 13px;
+	padding: 5px;
+}
+.hidden{
+	visibility: hidden;
+}

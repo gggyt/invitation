@@ -27,4 +27,19 @@ public class userServiceImpl implements userService {
     public void addUser(User user){
         userDao.addUser(user);
     }
+
+    @Override
+    public List<User> getAllUser(){
+        return userDao.getAllUser();
+    }
+
+    @Override
+    public int getAllUserNum(){
+        return userDao.getAllUserNum();
+    }
+
+    @Override
+    public List<User> getUserByLimitBeginAndNum(int begin, int num){
+        return userDao.getUserByLimitBeginAndNum(begin, num);
+    }
 }

@@ -27,4 +27,18 @@ public interface articleDao {
     public void deleteById(int id);
     //返回当前页面的所有帖子
     public List<Article> findByBeginAndNumAndAuthor(String name, int begin, int num);
+
+    public List<Article> findArticleByUsernameOrDateOrTitle(String s);
+
+    public int getArticleNumberByUsernameOrDateOrTitle(String s);
+
+    public List<Article> findSearchArticleByBeginAndNum(String s, int begin, int num);
+
+    public int maxArticleNumber();
+
+    public Article findArticleAndCategory(int id);
+
+    public List<Article> findTheArticleOfOneCategory(String ca_name);
+
+    public List<Article> findTheArticleOfCategoryLimitByBeginAndNum(String ca_name, int begin, int num);
 }

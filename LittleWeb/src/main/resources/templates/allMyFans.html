@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/my/liuyan.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/my/show.css">
+    <title>demo</title>
+    <script>
+        function addFunction() {
+            alert("好友请求以发送");
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+<ul id="pn" th:each="friendOrNot:${friendOrNotList}">
+    <li class="list0" > <form th:action="@{'/MytoBeSomebodyFan/'+${friendOrNot.FriendName}}" target="zhong" method="post">
+
+    <div class="head"><img src="/image/main.jpg" alt=""/></div>
+        <div class="content">
+            <p class="text"><span class="name">&nbsp;&nbsp;&nbsp;</span>
+                <span class="name" th:text="${friendOrNot.FriendName}"></span> </p>
+
+              <button type="submit" class="btn btn-info btn-xs f_right" th:if="${friendOrNot.getFansOrNot()}=='0'">关注他</button>
+            </form>
+            <form th:action="@{'/MycancelToBeSomebodyFan/'+${friendOrNot.FriendName}}" target="zhong" method="post">
+            <button type="submit" class="btn btn-danger btn-xs f_right" th:if="${friendOrNot.getFansOrNot()}=='1'">取消关注</button>
+            </form>
+        </div>
+
+    </li>
+</ul>
+
+<script src="/my/liuyan.js"></script>
+
+</body>
+</html> 

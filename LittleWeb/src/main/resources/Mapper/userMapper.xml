@@ -15,4 +15,13 @@
     <insert id="addUser" parameterType="com.example.demo.Entity.User">
         INSERT INTO user (u_id, u_name, u_passwd) values(#{u_id}, #{u_name}, #{u_passwd})
     </insert>
+    <select id="getAllUser" resultType="com.example.demo.Entity.User">
+        SELECT * FROM user
+    </select>
+    <select id="getAllUserNum" resultType="java.lang.Integer">
+        select count(*) from user
+    </select>
+    <select id="getUserByLimitBeginAndNum" resultType="com.example.demo.Entity.User">
+        SELECT * from user order by u_id limit #{begin}, #{num}
+    </select>
 </mapper>

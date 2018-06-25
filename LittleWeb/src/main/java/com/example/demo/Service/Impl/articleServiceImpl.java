@@ -64,4 +64,39 @@ public class articleServiceImpl implements articleService {
     public List<Article> findByBeginAndNumAndAuthor(String name, int begin, int num) {
         return articleDao.findByBeginAndNumAndAuthor(name, begin, num);
     }
+
+    @Override
+    public List<Article> findArticleByUsernameOrDateOrTitle(String s){
+        return articleDao.findArticleByUsernameOrDateOrTitle(s);
+    }
+
+    @Override
+    public int getArticleNumberByUsernameOrDateOrTitle(String s){
+        return articleDao.getArticleNumberByUsernameOrDateOrTitle(s);
+    }
+
+    @Override
+    public List<Article> findSearchArticleByBeginAndNum(String s, int begin, int num){
+        return articleDao.findSearchArticleByBeginAndNum(s, begin, num);
+    }
+
+    @Override
+    public int maxArticleNumber(){
+        return articleDao.maxArticleNumber();
+    }
+
+    @Override
+    public Article findArticleAndCategory(int id){
+        return articleDao.findArticleAndCategory(id);
+    }
+
+    @Override
+    public List<Article> findTheArticleOfOneCategory(String ca_name){
+        return articleDao.findTheArticleOfOneCategory(ca_name);
+    }
+
+    @Override
+    public List<Article> findTheArticleOfCategoryLimitByBeginAndNum(String ca_name, int begin, int num){
+        return articleDao.findTheArticleOfCategoryLimitByBeginAndNum(ca_name, begin, num);
+    }
 }

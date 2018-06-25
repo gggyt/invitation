@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/my/liuyan.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/my/show.css">
+    <title>demo</title>
+    <script>
+        function addFunction() {
+            alert("好友请求已发送");
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+<ul id="pn" th:each="friend:${friends}">
+    <li class="list0" >
+        <div class="head"><img src="/image/main.jpg" alt=""/></div>
+        <div class="content">
+            <p class="text"><span class="name">&nbsp;&nbsp;&nbsp;</span>
+                <span class="name" th:text="${friend.mainFriendName}"></span> </p>
+            <form th:action="@{'/agreeAddFriend/'+${friend.mainFriendName}}" target="zhong" method="post">
+                <button type="submit" class="btn btn-info f_right"  onclick="return addFunction()">同意</button>
+            </form>
+
+        </div>
+
+    </li>
+</ul><br/>
+<br/><br/>
+<br/>
+<center><p>-------------仅显示最近五条好友申请-------------</p></center>
+<br/>
+<br/><br/>
+<br/>
+
+<script src="/my/liuyan.js"></script>
+
+</body>
+</html> 

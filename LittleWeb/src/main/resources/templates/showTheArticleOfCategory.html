@@ -1,0 +1,52 @@
+<!DOCTYPE>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="/my/show.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>首页</title>
+</head>
+<body>
+
+
+
+<center>
+
+    <div class="log" th:each="article:${articles}">
+        <br/>
+        <a th:href="@{'/showArticle/'+${article.a_id}}"> <h2 class="text-left th2" th:text="${#strings.abbreviate(article.a_title,10)}"></h2></a>
+        <h6 class="text-left th6" th:text="'  '+${article.a_author}+'发布于'+
+        ${#dates.format(article.a_date,'yyyy-MM-dd HH:mm:ss')}"></h6>
+        <br/>
+        <article class="text-left tarticle" th:text="'    '+${#strings.abbreviate(article.a_content, 50)}">
+        </article>
+        <br/>
+        <br/>
+        <a th:href="@{'/showArticle/'+${article.a_id}}"> <p class="text-right text-blue">阅读全文➸ </p></a>
+        <hr/>
+    </div>
+
+
+    <div class="kong"></div>
+    </div>
+
+    <div th:if="${pageNum}!='0'">
+        <ul class="pagination" th:each="i : ${#numbers.sequence(1,pageNum)}">
+            <li><a th:href="@{'/getTheArticleOfCategory/'+${categoryName}+'/'+${i}}" th:text="${i}"></a>
+        </ul>
+    </div>
+    <div th:if="${pageNum}=='0'">
+        <br/><br/><br/>
+        <h4>暂无文章</h4>
+    </div>
+
+</center>
+</body>
+</html>

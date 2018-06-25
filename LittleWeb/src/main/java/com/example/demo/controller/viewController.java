@@ -1,9 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.Entity.Article;
-import com.example.demo.Service.articleService;
-import com.example.demo.Service.commentService;
-import com.example.demo.Service.visitorService;
+import com.example.demo.Entity.Category;
+import com.example.demo.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +26,10 @@ public class viewController {
     private articleService articleService;
     @Autowired
     private commentService commentService;
+    @Autowired
+    private categoryService categoryService;
+    @Autowired
+    private fansService fansService;
 
     /*
      * 返回登录页面
@@ -68,6 +71,12 @@ public class viewController {
         model.addAttribute("sumArticle", sumArticle);
         int sumComment = commentService.finAllNumByName(name);
         model.addAttribute("sumComment", sumComment);
+        int fansNum = fansService.getAllFansNum(name);
+        model.addAttribute("fansNum", fansNum);
+
+        List<Category> categorys = categoryService.findAllCategory();
+
+        model.addAttribute("categorys", categorys);
 
         System.out.println("main执行完毕");
 
@@ -76,7 +85,12 @@ public class viewController {
 
     //添加帖子，返回添加页面
     @RequestMapping("/addTitle")
-    public String addTitle() {
+    public String addTitle(Model model) {
+        List<Category> allCategories = categoryService.findAllCategory();
+        for (Category ca: allCategories) {
+            System.out.println(ca);
+        }
+        model.addAttribute("allCategories", allCategories);
         return "make";
     }
 

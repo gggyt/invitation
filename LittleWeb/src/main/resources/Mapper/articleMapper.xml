@@ -9,6 +9,17 @@
         <result property="a_date" column="a_date" javaType="java.util.Date"></result>
     </resultMap>
 
+    <resultMap id="articleAndCategory" type="com.example.demo.Entity.Article">
+        <id property="a_id" column="a_id" javaType="java.lang.Integer"></id>
+        <result property="a_title" column="a_title" javaType="java.lang.String"></result>
+        <result property="a_author" column="a_author" javaType="java.lang.String"></result>
+        <result property="a_content" column="a_content" javaType="java.lang.String"></result>
+        <result property="a_date" column="a_date" javaType="java.util.Date"></result>
+        <collection property="categories" ofType="com.example.demo.Entity.Category">
+            <id property="ca_name" column="ca_name"/>
+        </collection>
+    </resultMap>
+
     <resultMap id="article" type="com.example.demo.Entity.Article">
         <id property="a_id" column="a_id" javaType="java.lang.Integer"></id>
         <result property="a_title" column="a_title" javaType="java.lang.String"></result>
@@ -52,4 +63,42 @@
     <select id="findByBeginAndNumAndAuthor"  resultType="com.example.demo.Entity.Article">
         select * from article  where a_author=#{name} order by a_id desc LIMIT #{begin}, #{num}
     </select>
+
+    <select id="findArticleByUsernameOrDateOrTitle"   resultType="com.example.demo.Entity.Article">
+           select * from article where a_author LIKE binary CONCAT('%', #{s}, '%') or a_title LIKE binary CONCAT('%',#{s},'%')
+           OR a_content LIKE binary CONCAT('%',#{s},'%') or a_date LIKE binary CONCAT('%', #{s}, '%')
+           order by a_id desc
+</select>
+
+    <select id="getArticleNumberByUsernameOrDateOrTitle"   resultType="java.lang.Integer">
+      select count(*) from article where a_author LIKE binary CONCAT('%', #{s}, '%') or a_title LIKE binary CONCAT('%',#{s},'%')
+         OR a_content LIKE binary CONCAT('%',#{s},'%') OR a_date LIKE binary CONCAT('%', #{s}, '%')
+</select>
+
+    <select id="findSearchArticleByBeginAndNum"  resultType="com.example.demo.Entity.Article">
+          select * from article where  a_author LIKE binary CONCAT('%', #{s}, '%') or a_title LIKE binary CONCAT('%',#{s},'%')
+           OR a_content LIKE binary CONCAT('%',#{s},'%') OR a_date LIKE binary CONCAT('%', #{s}, '%')
+          order by a_id desc LIMIT #{begin}, #{num}
+    </select>
+
+    <select id="maxArticleNumber" resultType="java.lang.Integer">
+        select a_id from article order by a_id DESC limit 1
+    </select>
+
+    <select id="findArticleAndCategory" resultMap="articleAndCategory">
+        SELECT * from article a inner join book_category m on a.a_id=#{id} and a.a_id=m.a_id
+        inner join category c on c.ca_name=m.ca_name
+    </select>
+
+    <select id="findTheArticleOfOneCategory" resultMap="articleAndCategory">
+        select * from article a inner JOIN book_category b on b.ca_name=#{ca_name} and a.a_id=b.a_id
+        inner join category c on c.ca_name=b.ca_name
+    </select>
+
+    <select id="findTheArticleOfCategoryLimitByBeginAndNum"  resultType="com.example.demo.Entity.Article">
+      select * from article a inner JOIN book_category b on b.ca_name=#{ca_name} and a.a_id=b.a_id
+        inner join category c on c.ca_name=b.ca_name order by a.a_id DESC limit #{begin}, #{num}
+    </select>
+
 </mapper>
+

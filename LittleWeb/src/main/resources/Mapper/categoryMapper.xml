@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.CategoryMapper">
+    <select id="findAllCategory" resultType="com.example.demo.Entity.Category">
+        SELECT * FROM category
+    </select>
+    <select id="getAllCategories" resultType="com.example.demo.Entity.Category">
+        select * from category
+    </select>
+    <insert id="insertOneCategory">
+        INSERT INTO category (ca_name) value (#{ca_name})
+    </insert>
+    <delete id="deleteOneCategory">
+        DELETE FROM category where ca_name = #{ca_name}
+    </delete>
+    <update id="updateOneCategoryToWeiFenlei">
+        UPDATE category set ca_name='未分类' where ca_name=#{ca_name}
+    </update>
+</mapper>

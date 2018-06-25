@@ -32,4 +32,13 @@ public class User {
     public void setU_passwd(String u_passwd) {
         this.u_passwd = u_passwd;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "u_id=" + u_id +
+                ", u_name='" + u_name + '\'' +
+                ", u_passwd='" + u_passwd + '\'' +
+                '}';
+    }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.book_categoryMapper">
+   <insert id="insertBookAndCategory">
+       INSERT INTO book_category (a_id, ca_name) VALUES (#{id}, #{ca_name})
+   </insert>
+
+    <update id="updateBookAndCategoryToweifenlei">
+        UPDATE book_category set ca_name='未分类' where ca_name=#{ca_name}
+    </update>
+    <delete id="deleteMyArticleNookCategory">
+        DELETE from book_category where a_id=#{aid}
+    </delete>
+    <select id="getBookCategoryNum" resultType="java.lang.Integer">
+        SELECT count(*) FROM book_category where a_id=#{aid}
+    </select>
+
+    <delete id="deleteOneCategoryOfArticle">
+        DELETE from book_category where a_id=#{id} and ca_name=#{ca_name}
+    </delete>
+
+</mapper>

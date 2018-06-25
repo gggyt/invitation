@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.FansMapper">
+    <select id="isFansOrNot" resultType="com.example.demo.Entity.Fans">
+        SELECT * FROM fans where mainFriendName=#{mainFriendName} and otherFriendName=#{otherFriendName}
+    </select>
+
+    <select id="getAllMyFans" resultType="com.example.demo.Entity.Fans">
+        SELECT * FROM fans where otherFriendName=#{myUserName} and fansOrNot=1
+    </select>
+    <select id="getAllFansNum" resultType="java.lang.Integer">
+        SELECT count(*) FROM fans where otherFriendName=#{myUserName} and fansOrNot=1
+    </select>
+    <insert id="addMeToSomebodyFan">
+        INSERT INTO fans (mainFriendName, otherFriendName, fansOrNot) VALUES (#{mainFriendName}, #{otherFriendName}, 1)
+    </insert>
+    <delete id="cancelToBeSomebodyFan">
+        DELETE FROM fans where mainFriendName=#{mainFriendName} and otherFriendName=#{otherFriendName}
+    </delete>
+</mapper>

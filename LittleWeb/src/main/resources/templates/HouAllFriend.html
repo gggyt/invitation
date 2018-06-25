@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/my/liuyan.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/my/show.css">
+    <title>demo</title>
+    <script>
+        function addFunction() {
+            alert("好友请求以发送");
+          //  return true;
+        }
+        function deleteFunction() {
+            var r=confirm("确认删除？")
+            //console.log(r);
+           // return true;
+            if (r==false) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+
+<ul id="pn" th:each="friend:${friends}">
+    <li class="list0" >
+        <div class="head"><img src="/image/main.jpg" alt=""/></div>
+        <div class="content">
+            <p class="text"><span class="name">&nbsp;&nbsp;&nbsp;</span>
+                <span class="name" th:text="${friend.otherFriendName}"></span> </p>
+            <form th:action="@{'/deleteMyFriend/'+${friend.mainFriendName}+'/'+${friend.otherFriendName}}" target="zhong" method="post">
+                 <button type="submit" class="btn btn-danger btn-xs f_right" onclick="return deleteFunction()">删除好友</button>
+            </form>
+        </div>
+
+    </li>
+</ul>
+<br/>
+<br/><br/>
+<br/>
+
+
+<script src="/my/liuyan.js"></script>
+
+</body>
+</html> 

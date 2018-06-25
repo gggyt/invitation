@@ -20,7 +20,8 @@
 <div class="w_bai">
     <div class="log">
         <h2 class="text-center" th:text="${article.a_title}"></h2>
-        <h6 class="text-center" th:text="'  '+${article.a_author}+'发布于'+${article.a_date}"></h6>
+        <h5 class="text-center" th:text="'  '+${article.a_author}+'发布于'+${article.a_date}"></h5>
+        <h6 class="text-center" th:text="'分类：'+${categoriesS}"></h6>
         <hr/>
         <br/>
         <article class="text-left text_h" th:text="${article.a_content}">

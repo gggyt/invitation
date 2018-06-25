@@ -29,4 +29,19 @@ public class userDaoImpl implements userDao {
     public void addUser(User user) {
         userMapper.addUser(user);
     }
+
+    @Override
+    public List<User> getAllUser(){
+        return userMapper.getAllUser();
+    }
+
+    @Override
+    public int getAllUserNum(){
+        return userMapper.getAllUserNum();
+    }
+
+    @Override
+    public List<User> getUserByLimitBeginAndNum(int begin, int num){
+        return userMapper.getUserByLimitBeginAndNum(begin, num);
+    }
 }

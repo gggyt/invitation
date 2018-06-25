@@ -15,4 +15,10 @@ public interface UserMapper {
     List<User> findUserByName(String name);
     User findUserById(int id);
     void addUser(User user);
+
+    List<User> getAllUser();
+
+    int getAllUserNum();
+
+    List<User> getUserByLimitBeginAndNum(@Param("begin") int begin, @Param("num") int num);
 }
